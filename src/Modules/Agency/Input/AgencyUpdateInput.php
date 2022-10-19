@@ -2,13 +2,23 @@
 
 namespace App\Modules\Agency\Input;
 
+use App\Modules\Agency\Entity\Agency;
 use App\Modules\Common\Input\JsonSerializableInputInterface;
+use App\Modules\Common\Validator as AppAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[AppAssert\UniqueValueInEntity([
+    'entityClass' => Agency::class,
+    'field' => 'name',
+    'entityId' => 'agencyUuid',
+])]
 class AgencyUpdateInput implements JsonSerializableInputInterface
 {
+    private string $agencyUuid;
+
     #[Assert\NotBlank]
     #[Assert\Type('string')]
+
     private string $name;
 
     #[Assert\NotBlank]
@@ -17,7 +27,26 @@ class AgencyUpdateInput implements JsonSerializableInputInterface
 
     private ?string $notes;
 
-    public ?string $deactivationReason;
+    private ?string $deactivationReason;
+
+    /**
+     * @return string
+     */
+    public function getAgencyUuid(): string
+    {
+        return $this->agencyUuid;
+    }
+
+    /**
+     * @param string $agencyUuid
+     * @return AgencyUpdateInput
+     */
+    public function setAgencyUuid(string $agencyUuid): AgencyUpdateInput
+    {
+        $this->agencyUuid = $agencyUuid;
+
+        return $this;
+    }
 
     /**
      * @return string
@@ -94,4 +123,6 @@ class AgencyUpdateInput implements JsonSerializableInputInterface
 
         return $this;
     }
+
+
 }

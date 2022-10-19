@@ -27,8 +27,10 @@ class JsonRequestInputConverter implements ParamConverterInterface
     public function apply(Request $request, ParamConverter $configuration)
     {
         if (in_array($request->getMethod(), $this->requestBodyMethods, true)) {
+            $requestParams = array_merge($request->request->all()['data']['attributes'], $request->attributes->get('_route_params'));
+
             $requestObject = $this->jsonRequestSerializer->denormalize(
-                $request->request->all()['data']['attributes'],
+                $requestParams,
                 $configuration->getClass()
             );
 

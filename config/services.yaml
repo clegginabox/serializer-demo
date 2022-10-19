@@ -34,15 +34,15 @@ services:
         tags: [ 'controller.service_arguments' ]
         
 
-    Symfony\Component\PropertyInfo\PropertyInfoExtractor:
-        arguments:
-            $typeExtractors:
-                - Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor
+    #Symfony\Component\PropertyInfo\PropertyInfoExtractor:
+    #    arguments:
+    #        $typeExtractors:
+    #            - Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor
 
-    Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer:
-        arguments:
-            $propertyTypeExtractor: '@Symfony\Component\PropertyInfo\PropertyInfoExtractor'
-        tags:
-            - { name: 'serializer.normalizer', priority: -1100 }
+    #Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer:
+    #    arguments:
+    #        $propertyTypeExtractor: '@Symfony\Component\PropertyInfo\PropertyInfoExtractor'
+    #    tags:
+    #        - { name: 'serializer.normalizer', priority: -1100 }
 
 

@@ -24,6 +24,8 @@ class EntityProcessor
             $context ?? []
         );
 
+        dd($entity);
+
         return $this->persistProcessor->process($entity);
     }
 }
