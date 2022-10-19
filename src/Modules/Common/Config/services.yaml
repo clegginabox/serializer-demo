@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: true
+        
+    App\Modules\Common\EventListener\JsonRequestTransformerListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, priority: 5 }
+        
+    # Automatically denormalize request input into DTO's
+    App\Modules\Common\ParamConverter\JsonRequestInputConverter:
+        tags:
+            - { name: 'request.param_converter', converter: 'json_request_body.converter' }
