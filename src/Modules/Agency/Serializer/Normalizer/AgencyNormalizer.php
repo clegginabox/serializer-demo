@@ -11,8 +11,6 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class AgencyNormalizer implements DenormalizerInterface
 {
-    private const ALREADY_CALLED = 'agency_update_already_called';
-
     public function __construct(private ObjectNormalizer $normalizer)
     {
     }

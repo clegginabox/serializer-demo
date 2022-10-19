@@ -20,12 +20,7 @@ class AgencyService
 
     public function update(string $agencyUuid, AgencyUpdateInput $agencyUpdateInput)
     {
-/*        $agency = $this->agencyRepository->getAgencyBySchema($agencyUuid);
-
-        if (!$agency) {
-            throw new NotFoundHttpException();
-        }*/
-
+        // @todo get Agency from repo
         $agency = (new Agency())
             ->setName('An agency')
             ->setNotes('some agency somewhere');
