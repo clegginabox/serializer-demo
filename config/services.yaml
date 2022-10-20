@@ -33,7 +33,15 @@ services:
         resource: '../src/Modules/Agency/Action/'
         tags: [ 'controller.service_arguments' ]
         
+    App\Modules\Hcp\Action\:
+        resource: '../src/Modules/Hcp/Action/'
+        tags: [ 'controller.service_arguments' ]
 
+    App\Modules\Common\Serializer\JsonRequestSerializer:
+        autoconfigure: false
+
+    
+    
     #Symfony\Component\PropertyInfo\PropertyInfoExtractor:
     #    arguments:
     #        $typeExtractors:

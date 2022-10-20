@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Modules\Agency\Serializer\Normalizer;
+namespace App\Modules\Hcp\Serializer\Normalizer;
 
-use App\Modules\Agency\Entity\Agency;
-use App\Modules\Agency\Entity\AgencyStatus;
-use App\Modules\Agency\Repository\AgencyStatusRepository;
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use App\Modules\Hcp\Entity\Address;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-class AgencyNormalizer implements DenormalizerInterface
+class AddressNormalizer
 {
     public function __construct(private ObjectNormalizer $normalizer)
     {
@@ -17,12 +13,11 @@ class AgencyNormalizer implements DenormalizerInterface
 
     public function denormalize($data, string $type, string $format = null, array $context = [])
     {
-        // AgencyStatus $status
         return $this->normalizer->denormalize($data, $type, $format, $context);
     }
 
     public function supportsDenormalization($data, string $type, string $format = null, array $context = [])
     {
-        return $type === Agency::class;
+        return $type === Address::class;
     }
 }

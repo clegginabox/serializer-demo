@@ -14,7 +14,7 @@ doctrine:
         mappings:
             App:
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Modules/Agency/Entity'
+                dir: '%kernel.project_dir%/src/Modules/Hcp/Entity'
                 prefix: 'App\Modules\Agency'
                 alias: App
 

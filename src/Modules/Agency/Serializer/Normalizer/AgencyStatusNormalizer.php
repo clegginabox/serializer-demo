@@ -17,6 +17,8 @@ class AgencyStatusNormalizer implements DenormalizerInterface
             // @todo get AgencyStatus from repo
             return (new AgencyStatus())->setName($data);
         }
+
+
     }
 
     public function supportsDenormalization($data, string $type, string $format = null, array $context = [])

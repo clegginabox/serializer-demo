@@ -15,7 +15,7 @@ class AgencyCreateAction
     #[Route(path: '/agencies', name: 'agencies.create', methods: ['POST'])]
     public function __invoke(AgencyCreateInput $input)
     {
-        dd('wtf');
+
         $agency = $this->agencyService->create($input);
     }
 }

@@ -2,3 +2,8 @@ agency:
     resource: ../../src/Modules/Agency/Action
     type: annotation
     prefix: '/v1'
+
+hcp:
+    resource: ../../src/Modules/Hcp/Action
+    type: annotation
+    prefix: '/v1'
