@@ -3,6 +3,7 @@
 namespace App\Modules\Hcp\Input;
 
 use App\Modules\Common\Input\JsonSerializableInputInterface;
+use App\Modules\Common\Input\RelationshipInput;
 
 class HcpCreateInput implements JsonSerializableInputInterface
 {
@@ -19,6 +20,11 @@ class HcpCreateInput implements JsonSerializableInputInterface
     private string $address2;
 
     private string $city;
+
+    /**
+     * @var RelationshipInput[]
+     */
+    private array $agencies;
 
     /**
      * @return string
@@ -149,6 +155,25 @@ class HcpCreateInput implements JsonSerializableInputInterface
     public function setCity(string $city): HcpCreateInput
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return RelationshipInput[]
+     */
+    public function getAgencies(): array
+    {
+        return $this->agencies;
+    }
+
+    /**
+     * @param RelationshipInput[] $agencies
+     * @return HcpCreateInput
+     */
+    public function setAgencies(array $agencies): HcpCreateInput
+    {
+        $this->agencies = $agencies;
 
         return $this;
     }

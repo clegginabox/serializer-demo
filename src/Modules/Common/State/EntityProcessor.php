@@ -17,6 +17,8 @@ class EntityProcessor
             $context = [AbstractNormalizer::OBJECT_TO_POPULATE => $entityToUpdate];
         }
 
+        dump($this->serializer->normalize($data));
+
         $entity = $this->serializer->denormalize(
             $this->serializer->normalize($data),
             $entityClass,

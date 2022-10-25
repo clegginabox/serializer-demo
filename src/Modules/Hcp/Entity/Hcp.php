@@ -2,8 +2,14 @@
 
 namespace App\Modules\Hcp\Entity;
 
+use App\Modules\Agency\Entity\Agency;
 use App\Modules\Hcp\Entity\Address;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\InverseJoinColumn;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 
 class Hcp
@@ -29,6 +35,17 @@ class Hcp
     #[ORM\OneToOne(targetEntity: Address::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private Address $address;
+
+    #[JoinTable(name: 'hcp_agencies')]
+    #[JoinColumn(referencedColumnName: 'uuid')]
+    #[InverseJoinColumn(referencedColumnName: 'uuid')]
+    #[ORM\ManyToMany(targetEntity: Agency::class, inversedBy: 'hcps')]
+    private Collection $agencies;
+
+    public function __construct()
+    {
+        $this->agencies = new ArrayCollection();
+    }
 
     /**
      * @return string
@@ -128,6 +145,38 @@ class Hcp
     public function setAddress(\App\Modules\Hcp\Entity\Address $address): Hcp
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getAgencies(): Collection
+    {
+        return $this->agencies;
+    }
+
+    /**
+     * @param Agency $agency
+     * @return $this
+     */
+    public function addAgency(Agency $agency): self
+    {
+        if (!$this->agencies->contains($agency)) {
+            $this->agencies[] = $agency;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Agency $agency
+     * @return $this
+     */
+    public function removeAgency(Agency $agency): self
+    {
+        $this->agencies->removeElement($agency);
 
         return $this;
     }
